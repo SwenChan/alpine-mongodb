@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 set -m
 
 mongodb_cmd="mongod"
-cmd="$mongodb_cmd --httpinterface --rest --master --logpath /var/log/mongodb"
+mkdir -p /mongodb/log
+cmd="$mongodb_cmd --httpinterface --rest --master --logpath /mongodb/log/wiretiger.log"
 if [ "$AUTH" == "yes" ]; then
     cmd="$cmd --auth"
 fi

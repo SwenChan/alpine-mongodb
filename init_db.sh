@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 USER=${MONGODB_USER:-"admin"}
 DATABASE=${MONGODB_DATABASE:-"admin"}
 # no this param, generate one random password
-PASS=${MONGODB_PASS:-$(pwgen -s 12 1)}
-_word=$( [ ${MONGODB_PASS} ] && echo "preset" || echo "random" )
+PASS=${MONGODB_PASS:-"123456"}
 
 RET=1
 # wait until service start up
@@ -15,7 +14,7 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
-echo "=> Creating an ${USER} user with a ${_word} password in MongoDB"
+echo "=> Creating an ${USER} user with a ${PASS} password in MongoDB"
 mongo admin << EOF
 use $DATABASE
 db.createUser({user: '$USER', pwd: '$PASS', roles:[{role:'dbOwner',db:'$DATABASE'}]})
