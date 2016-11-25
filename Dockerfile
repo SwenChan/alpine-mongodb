@@ -1,7 +1,7 @@
-FROM swenchancn/alpine
+FROM swenchancn/alpine:edge
 MAINTAINER SwenChan <a274979395@163.com>
 
-RUN apk upgrade --update && apk add --no-cache mongodb --reposity http://mirrors.aliyun.com/alpine/edge/testing
+RUN apk upgrade --update && apk add --no-cache mongodb --repository http://mirrors.aliyun.com/alpine/edge/testing
 
 VOLUME /data/db
 VOLUME /var/log/mongodb
