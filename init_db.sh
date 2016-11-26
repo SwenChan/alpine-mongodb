@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ADMINUSER=${ADMIN_USER:-"admin"}
+ADMINPASS=${ADMIN_PASS:-"123456"}
 USER=${MONGODB_USER:-"admin"}
 DATABASE=${MONGODB_DATABASE:-"admin"}
 # no this param, generate one random password
@@ -14,11 +16,16 @@ while [[ ${RET} -ne 0 ]]; do
     RET=$?
 done
 
-echo "=> Creating an ${USER} user with a ${PASS} password in MongoDB"
-mongo admin << EOF
+echo "=> Creating an admin name: ${ADMINUSER} user with a ${ADMINPASS} password in MongoDB"
+mongo admin --eval "db.createUser({user: '$ADMINUSER', pwd: '$ADMINPASS', roles:[{role:'root',db:'admin'}]});"
+
+if [ "$DATABASE" != "admin" ]; then
+    echo "=> Creating an ${USER} user with a ${PASS} password in MongoDB"
+    mongo admin -u $ADMINUSER -p $ADMINPASS << EOF
 use $DATABASE
 db.createUser({user: '$USER', pwd: '$PASS', roles:[{role:'dbOwner',db:'$DATABASE'}]})
 EOF
+fi
 
 echo "=> Done!"
 touch /data/db/.init_db
