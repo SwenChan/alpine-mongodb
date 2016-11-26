@@ -21,7 +21,7 @@ mongo admin --eval "db.createUser({user: '$ADMINUSER', pwd: '$ADMINPASS', roles:
 
 if [ "$DATABASE" != "admin" ]; then
     echo "=> Creating an ${USER} user with a ${PASS} password in MongoDB"
-    mongo admin -u $ADMINUSER -p $ADMINPASS << EOF
+    mongo localhost:27017/admin -u $ADMINUSER -p $ADMINPASS << EOF
 use $DATABASE
 db.createUser({user: '$USER', pwd: '$PASS', roles:[{role:'dbOwner',db:'$DATABASE'}]})
 EOF
