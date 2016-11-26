@@ -23,6 +23,6 @@ default: 60% of RAM minus 1 GB, or 1 GB.
 If you run mongod in a container (e.g. lxc, cgroups, Docker, etc.) that does not have access to all of the RAM available in a system, you must set ___THIS PARAM___ to a value less than the amount of RAM available in the container. The exact amount depends on the other processes running in the container.
 
 
-## More param is on the way.Be patien.
+## More param is on the way.Be patient.
 
 To be continued.
