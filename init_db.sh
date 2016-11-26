@@ -15,13 +15,14 @@ while [[ ${RET} -ne 0 ]]; do
 done
 
 echo "=> Creating an admin name: ${USER} user with a ${PASS} password in MongoDB"
-mongo admin --eval "db.createUser({user: '$USER', pwd: '$PASS', roles:[{role:'root',db:'admin'}]});"
+mongo admin --eval "db.createUser({user: '${USER}', pwd: '${PASS}', roles:[{role:'root',db:'admin'}]});"
+sleep 2
 
-if [ "$DATABASE" != "admin" ]; then
+if [ "${DATABASE}" != "admin" ]; then
     echo "=> Creating an ${USER} user with a ${PASS} password in MongoDB"
-    mongo admin -u $USER -p $PASS << EOF
-use $DATABASE
-db.createUser({user: '$USER', pwd: '$PASS', roles:[{role:'dbOwner',db:'$DATABASE'}]})
+    mongo admin -u ${USER} -p${PASS} << EOF
+    use ${DATABASE}
+    db.createUser({user: '${USER}', pwd: '${PASS}', roles:[{role:'dbOwner',db:'${DATABASE}'}]})
 EOF
 fi
 
