@@ -1,0 +1,21 @@
+# mongodb conf
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+  maxIncomingConnections: MAXINCOMINGCONNECTIONS
+  http:
+    enabled: HTTPENABLED
+    JSONPEnabled: JSONPENABLED
+    RESTInterfaceEnabled: RESTINTERFACEENABLED
+
+security:
+  keyFile: KEYFILE
+  clusterAuthMode: CLUSTERAUTHMODE
+  authorization: AUTHORIZATION
+
+storage:
+  dbPath: DBPATH
+  engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      cacheSizeGB: CACHESIZEGB
