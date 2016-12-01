@@ -1,4 +1,8 @@
 # mongodb conf
+systemLog:
+  path: /mongodb/log/wiretiger.log
+  logAppend: true
+  logRotate: true
 net:
   port: 27017
   bindIp: 0.0.0.0
@@ -9,12 +13,12 @@ net:
     RESTInterfaceEnabled: RESTINTERFACEENABLED
 
 security:
-  keyFile: KEYFILE
+  keyFile: KEYFILELOCATION
   clusterAuthMode: CLUSTERAUTHMODE
   authorization: AUTHORIZATION
 
 storage:
-  dbPath: DBPATH
+  dbPath: /data/db
   engine: wiredTiger
   wiredTiger:
     engineConfig:
